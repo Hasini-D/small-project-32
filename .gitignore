@@ -1,0 +1,12 @@
+# Ignore sensitive files
+*.log
+*.env
+
+# Ignore system files
+*.swp
+*.swo
+.DS_Store
+
+# Ignore other unnecessary files
+node_modules/
+vendor/
