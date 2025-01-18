@@ -19,10 +19,10 @@ This project is a **Contact Manager Web Application** developed using the LAMP s
 | **Gabrielle Coronel**  | Database Management  |
 
 ## Tools and Technologies
-- **Frontend**: HTML, CSS, JavaScript (Bootstrap, jQuery recommended)
+- **Frontend**: HTML, CSS, JavaScript
 - **Backend**: PHP (RESTful API)
 - **Database**: MySQL
-- **Hosting**: Remote server (e.g., AWS, Heroku, Azure)
+- **Hosting**: Remote server 
 - **Version Control**: GitHub
 - **API Documentation**: SwaggerHub
 
