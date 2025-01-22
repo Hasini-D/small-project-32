@@ -3,7 +3,7 @@
 	
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
-	$phoneNumber = `$inData["phoneNumber"];
+	$phoneNumber = $inData["phoneNumber"];
 	$email = $inData["email"];
 	$userId = $inData["userId"];
 
