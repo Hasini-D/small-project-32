@@ -9,7 +9,6 @@
     	// Prepare the SQL statement for updating a contact
     	$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE ID=? AND UserID=?");
     	$stmt->bind_param(
->>>>>>> b59c20f3fa67ae360e7ddca9946b0c4d5f14ee54
         "ssssii", 
         $inData["FirstName"], 
         $inData["LastName"], 
@@ -57,7 +56,4 @@ function returnWithInfo($message)
 }
 
 ?>
-<<<<<<< HEAD
-=======
 
->>>>>>> b59c20f3fa67ae360e7ddca9946b0c4d5f14ee54
