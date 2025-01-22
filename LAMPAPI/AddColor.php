@@ -1,7 +1,7 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$color = $inData["color"];
+	$color = $inData["name"];
 	$userId = $inData["userId"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -12,8 +12,12 @@
 	else
 	{
 		$stmt = $conn->prepare("INSERT into Colors (UserId,Name) VALUES(?,?)");
-		$stmt->bind_param("ss", $userId, $color);
-		$stmt->execute();
+		$stmt->bind_param("is", $userId, $color);
+		if($stmt->execute()){
+			returnWithSuccess("Color added successfully");
+		}else{
+			returnWithError("Failed to add color: " . $stmt->error);
+		}
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
@@ -37,3 +41,4 @@
 	}
 	
 ?>
+>>>>>>> 00af200733b8bd5e44f8d4a6773f7cffe4b9138d
