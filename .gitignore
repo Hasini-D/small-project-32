@@ -1,7 +1,15 @@
 # Ignore sensitive files
 *.log
 *.env
-
+.bash_history
+.bashrc
+.cloud-locale-test.skip
+.digitalocean_password
+.gitconfig
+.lesshst
+.mysql_history
+.profile
+.viminfo
 # Ignore system files
 *.swp
 *.swo
