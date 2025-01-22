@@ -10,3 +10,4 @@
 # Ignore other unnecessary files
 node_modules/
 vendor/
+.ssh/id_ed25519
