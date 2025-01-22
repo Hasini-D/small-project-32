@@ -10,6 +10,12 @@
 .mysql_history
 .profile
 .viminfo
+.gitignore
+.bash_history
+.bashrc
+.cloud-locate-test.skip
+.digitalocean_password
+.gitconfig
 # Ignore system files
 *.swp
 *.swo
