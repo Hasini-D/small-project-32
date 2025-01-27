@@ -1,25 +1,32 @@
-	<html>
+<!DOCTYPE html>
+<html>
 <head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
+    <title>COP 4331 LAMP Stack Demo</title>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
-<div>
-	<h1 id="title">COP 4331 LAMP Stack Demo</h1>
-</div>
+<body>
+    <div>
+        <h1 id="title">COP 4331 LAMP Stack Demo</h1>
+    </div>
 
-<div class="container">
-	<form action="">
-	<h3>Enter your username and password</h3>
-        <input type="text" id="first" name="first" placeholder="Username" required>
-         <br>
-        <input type="password" id="password" name="password" placeholder="Password" required>
-        <br>
-        <button class="button" type="submit" onclick="doLogin();"> Login </button>
-	</form>
-</div>
-
+    <div class="container">
+		<!--return false is used so The page does not reload or redirect upon form submission.-->
+        <form id="loginForm" onsubmit="return false;">
+            <h3>Enter your username and password</h3>
+            <label for="loginName">Username</label>
+            <input type="text" id="loginName" name="username" placeholder="Username" required>
+            <br>
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" placeholder="Password" required>
+            <br>
+            <button class="button" type="submit" onclick="doLogin();">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+    </div>
 </body>
 </html>
+

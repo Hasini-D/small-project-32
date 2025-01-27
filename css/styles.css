@@ -1,13 +1,20 @@
-body {
+html {
+    height: 100%;
+}
+   
+   body {
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(#87bfff, #9198e5);
+    padding: 0;
     margin: 0; 
-    height: 100vh; /* Full viewport height */
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    background-repeat: no-repeat;
+    min-height: 100%; 
+    background-attachment: fixed; /* Ensures the background remains fixed during scrolling */
+    background-size: cover; /* Ensures the background scales to fill the entire page */
+    background-repeat: no-repeat; /* Prevents the background from repeating */
     background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -22,6 +29,19 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
     align-items: center; /* Center content vertically */
 }
+
+.container_signup {
+    background-color: white;
+    width: 50%;
+    max-width: 600px;
+    border: 3px solid rgba(135, 191, 255, 0.14);
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    align-items: center; /* Center content vertically */
+}
+
 
 .button {
     background-color: #87bfff;
@@ -98,7 +118,7 @@ input {
     color: #FFFFFF;
     opacity: 50%;
 }
-
+/*
 #loginName
 {
 	font-size: 30px;
@@ -115,7 +135,7 @@ input {
 {
 	font-size: 30px;
 }
-
+*/
 /*
 input[type="text"],input[type="password"]{
     border-radius: 25px;
