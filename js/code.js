@@ -1,4 +1,5 @@
-const urlBase = 'http://COP4331-5.com/LAMPAPI';
+const urlBase = "http://cop4331-32.xyz/LAMPAPI";
+//fixed baseUrl
 const extension = 'php';
 
 let userId = 0;
@@ -15,7 +16,8 @@ function doLogin()
 	let password = document.getElementById("loginPassword").value;
 //	var hash = md5( password );
 	
-	document.getElementById("loginResult").innerHTML = "";
+//Remove this line of code as there isnt an id: LoginResult
+document.getElementById("loginResult").innerHTML = "";
 
 	let tmp = {login:login,password:password};
 //	var tmp = {login:login,password:hash};
