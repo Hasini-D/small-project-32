@@ -1,5 +1,9 @@
 
 <?php
+	header("Access-Control-Allow-Origin: *"); // Allow requests from any origin
+	header("Content-Type: application/json; charset=UTF-8"); // Set the content type
+	header("Access-Control-Allow-Methods: POST"); // Allow POST requests
+	header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
 	$inData = getRequestInfo();
 	
