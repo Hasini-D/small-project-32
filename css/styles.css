@@ -1,4 +1,8 @@
 html {
+    height: 100%;
+}
+   
+   body {
     height: 100%; /* Ensures both html and body occupy the full height of the viewport */
 }
 
@@ -7,7 +11,9 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100%; /* Ensures the body stretches to fit all content */
-    background: linear-gradient(#87bfff, #9198e5);
+    padding: 0;
+    margin: 0; 
+    min-height: 100%; 
     background-attachment: fixed; /* Ensures the background remains fixed during scrolling */
     background-size: cover; /* Ensures the background scales to fill the entire page */
     background-repeat: no-repeat; /* Prevents the background from repeating */
@@ -32,15 +38,16 @@ body {
 
 .container_signup {
     background-color: white;
-    width: 50%; 
-    max-width: 600px; 
+    width: 50%;
+    max-width: 600px;
     border: 3px solid rgba(135, 191, 255, 0.14);
-    padding: 20px; 
+    padding: 20px;
     text-align: center;
     border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     align-items: center; /* Center content vertically */
 }
+
 
 .button {
     background-color: #87bfff;
@@ -117,7 +124,6 @@ input {
     color: #FFFFFF;
     opacity: 50%;
 }
-
 /*
 #loginName
 {
