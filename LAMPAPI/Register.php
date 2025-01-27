@@ -1,0 +1,69 @@
+<?php
+$inData = getRequestInfo();
+
+$firstName = $inData["firstName"];
+$lastName = $inData["lastName"];
+$login = $inData["login"];
+$password = $inData["password"];
+
+$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+
+if ($conn->connect_error) 
+{
+    returnWithError("Database connection failed: " . $conn->connect_error);
+} 
+else 
+{
+    // Check if the login already exists
+    $stmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
+    $stmt->bind_param("s", $login);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) 
+    {
+        returnWithError("User already exists");
+    } 
+    else 
+    {
+        // Insert the new user into the database
+        $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+
+        if ($stmt->execute()) 
+        {
+            returnWithSuccess("User created successfully");
+        } 
+        else 
+        {
+            returnWithError("Error creating user: " . $stmt->error);
+        }
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
+}
+
+function sendResultInfoAsJson($obj)
+{
+    header('Content-type: application/json');
+    echo $obj;
+}
+
+function returnWithError($err)
+{
+    $retValue = '{"success":false,"error":"' . $err . '"}';
+    sendResultInfoAsJson($retValue);
+}
+
+function returnWithSuccess($msg)
+{
+    $retValue = '{"success":true,"message":"' . $msg . '"}';
+    sendResultInfoAsJson($retValue);
+}
+?>
