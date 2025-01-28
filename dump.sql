@@ -16,29 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Colors`
+-- Current Database: `COP4331`
 --
 
-DROP TABLE IF EXISTS `Colors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Colors` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(50) NOT NULL DEFAULT '',
-  `UserID` int NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `COP4331` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
---
--- Dumping data for table `Colors`
---
-
-LOCK TABLES `Colors` WRITE;
-/*!40000 ALTER TABLE `Colors` DISABLE KEYS */;
-INSERT INTO `Colors` VALUES (1,'White',1),(2,'Black',1),(3,'gray',1),(4,'Magenta',1),(5,'Yellow',1),(6,'Cyan',1),(7,'Salmon',1),(8,'Chartreuse',1),(9,'Lime',1),(10,'Light Blue',1),(11,'Light Gray',1),(12,'Light Red',1),(13,'Light Green',1),(14,'Chiffon',1),(15,'Fuscia',1),(16,'Brown',1),(17,'Beige',1),(18,'Blue',3),(19,'White',3),(20,'Black',3),(21,'gray',3),(22,'Magenta',3),(23,'Yellow',3),(24,'Cyan',3),(25,'Salmon',3),(26,'Chartreuse',3),(27,'Lime',3),(28,'Light Blue',3),(29,'Light Gray',3),(30,'Light Red',3),(31,'Light Green',3),(32,'Chiffon',3),(33,'Fuscia',3),(34,'Brown',3),(35,'Beige',3),(36,'TestColor',1),(37,'TestColor',1);
-/*!40000 ALTER TABLE `Colors` ENABLE KEYS */;
-UNLOCK TABLES;
+USE `COP4331`;
 
 --
 -- Table structure for table `Contacts`
@@ -104,4 +87,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-28 15:17:55
+-- Dump completed on 2025-01-28 19:06:22
