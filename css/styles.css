@@ -1,19 +1,14 @@
 html {
     height: 100%;
 }
-   
-   body {
-    height: 100%; /* Ensures both html and body occupy the full height of the viewport */
-}
 
-body {
+.login{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100%; /* Ensures the body stretches to fit all content */
-    padding: 0;
-    margin: 0; 
+    height: 100%; 
     min-height: 100%; 
+    background-image: linear-gradient(#87bfff, #DCECFF);
     background-attachment: fixed; /* Ensures the background remains fixed during scrolling */
     background-size: cover; /* Ensures the background scales to fill the entire page */
     background-repeat: no-repeat; /* Prevents the background from repeating */
@@ -23,6 +18,25 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
+.signup{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 100%; 
+    background-image: linear-gradient(#87bfff, #DCECFF);
+    background-attachment: fixed; /* Ensures the background remains fixed during scrolling */
+    background-size: cover; /* Ensures the background scales to fill the entire page */
+    background-repeat: no-xrepeat; /* Prevents the background from repeating */
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    zoom: 55%;
+}
+
 
 .container {
     background-color: white;
@@ -38,16 +52,19 @@ body {
 
 .container_signup {
     background-color: white;
-    width: 50%;
-    max-width: 600px;
+    width: 700px;
     border: 3px solid rgba(135, 191, 255, 0.14);
     padding: 20px;
-    text-align: center;
+    text-align: center; 
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     align-items: center; /* Center content vertically */
+    font-size: 20px;
 }
 
+h1{
+    text-align: center;
+}
 
 .button {
     background-color: #87bfff;
