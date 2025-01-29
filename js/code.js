@@ -173,3 +173,48 @@ function searchColor()
 	}
 	
 }
+
+
+function signUp() {
+    //const email = document.getElementById("email").value;
+    //const phoneNumber = document.getElementById("phoneNumber").value;
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const loginName = document.getElementById("loginName").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const data = {
+        //email: email,
+        //phoneNumber: phoneNumber,
+        firstName: firstName,
+        lastName: lastName,
+        login: loginName,
+        password: password
+    };
+
+	const url = urlBase + '/Register.' + extension;
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.onreadystatechange = function () {
+		if (this.readyState == 4) {
+			if (this.status == 200) {
+				const response = JSON.parse(xhr.responseText);
+				if (response.success) {
+					console.log("Data being sent:", data);
+					alert(response.message);
+					window.location.href = "color.html";
+				} else {
+					console.log("Data being sent:", data);
+					alert("Error: " + response.error);
+				}
+			} else {
+				console.log("Data being sent:", data);
+				alert("Server error: " + this.status + " - " + this.statusText);
+			}
+		}
+	};
+	
+	xhr.send(JSON.stringify(data));
+}
