@@ -193,11 +193,11 @@ function signUp() {
     };
 
 	const url = urlBase + '/Register.' + extension;
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
 
 	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.onreadystatechange = function(){
+	xhr.onreadystatechange = function () {
 		if (this.readyState == 4) {
 			if (this.status == 200) {
 				const response = JSON.parse(xhr.responseText);

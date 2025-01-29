@@ -54,7 +54,7 @@ html {
     width: 700px;
     border: 3px solid rgba(135, 191, 255, 0.14);
     padding: 20px;
-    text-align: center;
+    text-align: center; 
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     align-items: center; /* Center content vertically */
