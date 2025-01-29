@@ -2,26 +2,27 @@
 <html>
 <head>
     <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="js/md5.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
-<body>
+<body class="signup">
     <div>
-        <h1 id="title">COP 4331 LAMP Stack Demo</h1>
+        <h1 id="title">Contact Manager</h1>
     </div>
 
     <div class="container_signup">
 		<!--return false is used so The page does not reload or redirect upon form submission.-->
         <form id="signupForm" onsubmit="return false;">
             <h3>Create an account</h3>
-            <label for="email">Email</label>
+            <!--<label for="email">Email</label>
             <input type="text" id="email" name="email" placeholder="Email" required>
             <br>
             <label for="email">Phone Number</label>
             <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
-            <br>
+            <br>-->
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
             <br>
@@ -36,7 +37,7 @@
             <br>
             <button class="button" type="button" onclick="signUp();">Sign up</button>
         </form>
-        <p><a href="index.html">Sign in</a></p>
+        <p>Have an account? <a href="index.html">Sign in</a></p>
     </div>
 </body>
 </html>
