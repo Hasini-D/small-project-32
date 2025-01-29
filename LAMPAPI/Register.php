@@ -8,7 +8,9 @@ $inData = getRequestInfo();
 
 $firstName = $inData["firstName"];
 $lastName = $inData["lastName"];
-$login = $inData["login"];
+$email = $inData["email"];
+$phone = $inData["phone"];
+$login = $inData["username"];
 $password = $inData["password"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -32,7 +34,7 @@ else
     else 
     {
         // Insert the new user into the database
-        $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Phone, Login, Password) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
 
         if ($stmt->execute()) 
