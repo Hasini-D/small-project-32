@@ -35,7 +35,7 @@ else
     {
         // Insert the new user into the database
         $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Email, Phone, Login, Password) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+        $stmt->bind_param("ssss", $firstName, $lastName, $email, $phone, $login, $password);
 
         if ($stmt->execute()) 
         {
