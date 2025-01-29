@@ -14,7 +14,7 @@ function doLogin() {
     const login = document.getElementById("loginName").value;
     const password = document.getElementById("loginPassword").value;
 
-    const tmp = { login: login, password: password };
+    const tmp = { username: login, password: password };
     const jsonPayload = JSON.stringify(tmp);
 
     const url = urlBase + '/Login.' + extension;
