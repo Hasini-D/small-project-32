@@ -3,7 +3,7 @@
 	
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
-	$phoneNumber = $inData["phoneNumber"];
+	$phone = $inData["phone"];
 	$email = $inData["email"];
 	$userId = $inData["userId"];
 
@@ -14,8 +14,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, PhoneNumber, Email, UserId) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("ssssi", $firstName, $lastName, $phoneNumber, $email, $userId);
+		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email, UserId) VALUES(?,?,?,?,?)");
+		$stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
