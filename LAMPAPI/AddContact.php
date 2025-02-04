@@ -1,8 +1,15 @@
 <?php
 	$inData = getRequestInfo();
 
-	if (!isset($inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["userId"])) {
-        returnWithError("Missing required fields.");
+	if (
+        !isset($inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["userId"]) ||
+        empty($inData["firstName"]) ||
+        empty($inData["lastName"]) ||
+        empty($inData["phone"]) ||
+        empty($inData["email"]) ||
+        !is_numeric($inData["userId"]) 
+    ) {
+        returnWithError("Missing or invalid input.");
         exit();
     }
 	
