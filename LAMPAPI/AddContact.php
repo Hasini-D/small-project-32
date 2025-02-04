@@ -1,5 +1,10 @@
 <?php
 	$inData = getRequestInfo();
+
+	if (!isset($inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["userId"])) {
+        returnWithError("Missing required fields.");
+        exit();
+    }
 	
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
@@ -16,10 +21,16 @@
 	{
 		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email, UserId) VALUES(?,?,?,?,?)");
 		$stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
-		$stmt->execute();
+		if($stmt->execute())
+		{
+			returnWithSuccess("Contact added successfully");
+		}
+		else
+		{
+			returnWithError("Failed to add contact" . $stmt->error);
+		}
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
 	}
 
 	function getRequestInfo()
@@ -35,8 +46,12 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson(["error" => $err] );
+	}
+
+	function returnWithSuccess($msg)
+	{
+		sendResultInfoAsJson(["success" => $msg]);
 	}
 	
 ?>
