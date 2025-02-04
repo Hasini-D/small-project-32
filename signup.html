@@ -6,40 +6,36 @@
     <script type="text/javascript" src="js/md5.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet">
 </head>
+
 <body class="signup">
     <div>
     <div>
-        <h1 id="title">Contact Manager</h1>
+        <h1>Snoopy’s Address Book</h1>
     </div>
 
     <div class="container_signup">
 		<!--return false is used so The page does not reload or redirect upon form submission.-->
-        <form id="signupForm" onsubmit="return false;">
+        <form onsubmit="return false;">
             <h3>Create an account</h3>
-            <!--<label for="email">Email</label>
-            <input type="text" id="email" name="email" placeholder="Email" required>
-            <br>
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
-            <br>-->
-            <br>
             <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+            <input type="text"  name="firstName" placeholder="First Name" required>
             <br>
             <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+            <input type="text"  name="lastName" placeholder="Last Name" required>
             <br>
             <label for="loginName">Username</label>
-            <input type="text" id="loginName" name="loginName" placeholder="Username" required>
+            <input type="text"  name="loginName" placeholder="Username" required>
             <br>
             <label for="loginPassword">Password</label>
-            <input type="password" id="loginPassword" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password" required>
             <br>
             <button class="button" type="button" onclick="signUp();">Sign up</button>
         </form>
-        <p>Have an account? <a href="index.html">Sign in</a></p>
+        <h4>Have an account? <a href="index.html">Sign in</a></h4>
     </div>
 </body>
 </html>

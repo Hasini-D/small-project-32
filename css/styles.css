@@ -1,39 +1,29 @@
-html {
-    height: 100%;
-}
-
 .login{
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100%; 
-    min-height: 100%; 
-    background-image: linear-gradient(#87bfff, #DCECFF);
-    background-attachment: fixed; /* Ensures the background remains fixed during scrolling */
-    background-size: cover; /* Ensures the background scales to fill the entire page */
-    background-repeat: no-repeat; /* Prevents the background from repeating */
-    background-position: center;
+    font-family: "Coming Soon", serif;
+    padding: 5px;
+    background-color: #FFEEAD;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
 .signup{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Coming Soon", serif;
+    display: flex;
+    background-color: #FFEEAD;
+    align-items: center;
+    flex-direction: column;
+    width: device-width;
+    zoom: 60%;
+}
+
+.contact{
+    font-family:"Coming Soon", serif;
     margin: 0;
     padding: 0;
     height: 100%;
     min-height: 100%; 
-    background-image: linear-gradient(#87bfff, #DCECFF);
-    background-attachment: fixed; /* Ensures the background remains fixed during scrolling */
-    background-size: cover; /* Ensures the background scales to fill the entire page */
-    background-repeat: no-xrepeat; /* Prevents the background from repeating */
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background-color: #FFEEAD;
     zoom: 75%;
 }
 
@@ -41,17 +31,23 @@ html {
     background-color: white;
     width: 50%; 
     max-width: 600px; 
-    border: 3px solid rgba(135, 191, 255, 0.14);
     padding: 20px; 
-    text-align: center;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-    align-items: center; /* Center content vertically */
+    border-radius: 40px;
+    align-items: center; 
 }
 
 .container_signup {
     background-color: white;
-    width: 700px;
+    width: 700px; 
+    padding: 20px; 
+    border-radius: 40px;
+    align-items: center; 
+}
+
+.container_contact {
+    background-color: white;
+    width: 300px;
+    height: 400px;
     border: 3px solid rgba(135, 191, 255, 0.14);
     padding: 20px;
     text-align: center; 
@@ -59,170 +55,58 @@ html {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     align-items: center; /* Center content vertically */
     font-size: 20px;
+    margin: 20px;
 }
 
-h1{
+h1, h3, h4{
     text-align: center;
 }
 
+.coming-soon-regular {
+    font-family: "Coming Soon", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
 .button {
-    background-color: #87bfff;
-    color: white; 
-    border: none; 
+    background-color: #FFA451;
+    font-family: "Coming Soon", serif;
+    color: 2E2E2E; 
+    border:  1.5px solid;
+    border-color: black; 
     margin-top: 10px;
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer; /* Pointer cursor for button */
     font-size: 16px;
-    font-weight: bold; 
+    display: block;
+    margin: 5px auto;
+    text-align: center;
 }
 
 .button:hover {
-    background-color: #6aaefc; /* Change color on hover */
+    background-color: #ffa551bb; /* Change color on hover */
 }
 
 input {
     width: 90%; /* Full width minus padding */
     padding: 10px;
     margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    border-radius: 30px;
+    border: 2px solid #000000;
     font-size: 16px;
+    background-color: #D9D9D9;
 }
 
-#title {
-    font-size: 40px;
-    width: 100%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
-    margin-bottom: 20px; /* Add spacing below the title */
-}
-
-
-#loginDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
-#accessUIDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
-.buttons
-{
-    font-size: 30px;
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.buttons:hover{
-    background-color: #00d5124f;
-    color: #FFFFFF;
-    opacity: 50%;
-}
-/*
-#loginName
-{
-	font-size: 30px;
-}
-#loginPassword
-{
-	font-size: 30px;
-}
-#searchText
-{
-	font-size: 30px;
-}
-#colorText
-{
-	font-size: 30px;
-}
-*/
-/*
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
+#contactList {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    min-height: 100px;
     width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-}
-    */
-
-#inner-title{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-#loginResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-#userName{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
-}
-
-#logoutButton{
-    width: 20%;
-    margin-left: 40%;
-}
-
-select{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-#colorSearchResult{
-    display: none;
-}
-
-#colorAddResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    max-width: 600px;
+    font-size: 15px;
+    color: black;
 }
