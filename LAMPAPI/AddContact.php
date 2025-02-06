@@ -1,7 +1,7 @@
 <?php
     $inData = getRequestInfo();
 
-    if (
+    /*if (
         !isset($inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["userId"]) ||
         empty($inData["firstName"]) ||
         empty($inData["lastName"]) ||
@@ -11,7 +11,7 @@
     ) {
         returnWithError("Missing or invalid input.");
         exit();
-    }
+    }*/
     
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
