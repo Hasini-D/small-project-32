@@ -40,16 +40,22 @@
             exit();
         }
 
-        $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserId) VALUES(?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserId) VALUES(?:value1,:value2,:value3,:value4,:value5)");
         if (!$stmt) {
             returnWithError($conn->error);
             $conn->close();
             exit();
         }
-        $stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
+        //$stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
+		$stmt->bindParam(':value1',$firstName);
+		$stmt->bindParam(':value2',$lastName);
+		$stmt->bindParam(':value3',$phone);
+		$stmt->bindParam(':value4',$email);
+		$stmt->bindParam(':value5',$userId);
 		$test = $stmt->execute();
 		$err = "Here is the statment status:"+$test;
-		error_log("Statement execution status: " . ($test ? "Success" : "Failure"));
+		print_r($stmt->errorInfo());
+		
         if ($test) {
             returnWithSuccess("Contact added successfully.");
         } else {
