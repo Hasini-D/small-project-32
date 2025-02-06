@@ -17,7 +17,7 @@
     $lastName = $inData["lastName"];
     $phone = $inData["phone"];
     $email = $inData["email"];
-    $userId = $inData["userId"];
+    $userId = (int)$inData["userId"];
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
     if ($conn->connect_error) {
@@ -47,7 +47,10 @@
             exit();
         }
         $stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
-        if ($stmt->execute()) {
+		$test = $stmt->execute();
+		$err = "Here is the statment status:"+$test;
+		error_log("Statement execution status: " . ($test ? "Success" : "Failure"));
+        if ($test) {
             returnWithSuccess("Contact added successfully.");
         } else {
             returnWithError($stmt->error);
