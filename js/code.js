@@ -1,5 +1,4 @@
 const urlBase = "http://cop4331-32.xyz/LAMPAPI";
-//fixed baseUrl
 const extension = 'php';
 
 let userId = 0;
@@ -25,22 +24,25 @@ function doLogin() {
 
     try {
         xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                const jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.id;
-
-                if (userId < 1) {
-                    alert("User/Password combination incorrect");
-                    return;
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    let res = JSON.parse(xhr.responseText);
+                    console.log("Parsed JSON:", res);
+        
+                    if (res.id > 0) {
+                        document.cookie = "firstName=" + res.firstName + "; path=/; expires=" + new Date(Date.now() + 86400000).toUTCString();
+                        document.cookie = "lastName=" + res.lastName + "; path=/; expires=" + new Date(Date.now() + 86400000).toUTCString();
+                        document.cookie = "userId=" + res.id + "; path=/; expires=" + new Date(Date.now() + 86400000).toUTCString();
+        
+                        window.location.href = "contactmanager.html";
+                    } else {
+                        console.error("Login failed:", res.error);
+                    }
+                } catch (error) {
+                    console.error("Error parsing JSON:", error);
                 }
-
-                firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
-
-                saveCookie(); // Ensure this function is defined elsewhere
-                window.location.href = "color.html";
             }
-        };
+        };        
         xhr.send(jsonPayload);
     } catch (err) {
         console.error("Error:", err.message);
@@ -48,55 +50,58 @@ function doLogin() {
     }
 }
 
-function saveCookie()
-{
-	let minutes = 20;
-	let date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+
+function saveCookie() {
+    let minutes = 20;
+    let date = new Date();
+    date.setTime(date.getTime() + minutes * 60 * 1000);
+    let expires = "expires=" + date.toUTCString();
+
+    document.cookie = `firstName=${firstName}; path=/; ${expires}`;
+    document.cookie = `lastName=${lastName}; path=/; ${expires}`;
+    document.cookie = `userId=${userId}; path=/; ${expires}`;
 }
 
-function readCookie()
-{
-	userId = -1;
-	let data = document.cookie;
-	let splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		let thisOne = splits[i].trim();
-		let tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
-		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
-		}
-		else if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
-	}
-	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
-	}
-	else
-	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
+
+function readCookie() {
+    let cookies = document.cookie.split(";");
+
+    let userId = -1, firstName = "", lastName = "";
+
+    cookies.forEach(cookie => {
+        let [key, value] = cookie.trim().split("=");
+
+        if (key === "firstName") 
+            firstName = value;
+       
+        if (key === "lastName") 
+            lastName = value;
+       
+        if (key === "userId") 
+            userId = parseInt(value, 10);
+    });
+
+    if (userId > 0) {
+        document.getElementById("userName").textContent = `Logged in as ${firstName} ${lastName}`;
+    } else {
+        window.location.href = "index.html";
+    }
 }
 
-function doLogout()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
+function doLogout() {
+    userId = 0;
+    firstName = "";
+    lastName = "";
+
+    // Clear cookies? Might need to change later
+    document.cookie = "firstName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    window.location.href = "index.html"; 
 }
+
+
 
 function addColor()
 {
@@ -106,7 +111,7 @@ function addColor()
 	let tmp = {color:newColor,userId,userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/AddColor.' + extension;
+	let url = urlBase + '/AddContact.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -131,7 +136,12 @@ function addColor()
 
 function searchColor()
 {
-	let srch = document.getElementById("searchText").value;
+	const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const loginName = document.getElementById("loginName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
 	document.getElementById("colorSearchResult").innerHTML = "";
 	
 	let colorList = "";
@@ -176,16 +186,12 @@ function searchColor()
 
 
 function signUp() {
-    //const email = document.getElementById("email").value;
-    //const phoneNumber = document.getElementById("phoneNumber").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
     const loginName = document.getElementById("loginName").value;
     const password = document.getElementById("loginPassword").value;
 
     const data = {
-        //email: email,
-        //phoneNumber: phoneNumber,
         firstName: firstName,
         lastName: lastName,
         login: loginName,
@@ -197,19 +203,25 @@ function signUp() {
     xhr.open("POST", url, true);
 
 	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.onreadystatechange = function () {
+	
+    xhr.onreadystatechange = function () {
 		if (this.readyState == 4) {
 			if (this.status == 200) {
 				const response = JSON.parse(xhr.responseText);
-				if (response.success) {
+				
+                if (response.success) {
 					console.log("Data being sent:", data);
 					alert(response.message);
 					window.location.href = "color.html";
-				} else {
+				} 
+                
+                else {
 					console.log("Data being sent:", data);
 					alert("Error: " + response.error);
 				}
-			} else {
+			} 
+            
+            else {
 				console.log("Data being sent:", data);
 				alert("Server error: " + this.status + " - " + this.statusText);
 			}
