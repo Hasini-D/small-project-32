@@ -18,6 +18,7 @@
     $phone = $inData["phone"];
     $email = $inData["email"];
     $userId = (int)$inData["userId"];
+    //$userId = $inData["userId"];
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
     if ($conn->connect_error) {
@@ -40,22 +41,22 @@
             exit();
         }
 
-        $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserId) VALUES(?:value1,:value2,:value3,:value4,:value5)");
+        $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserId) VALUES(?, ?, ?, ?, ?)");
         if (!$stmt) {
             returnWithError($conn->error);
             $conn->close();
             exit();
         }
-        //$stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
-		$stmt->bindParam(':value1',$firstName);
+        $stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
+		/*$stmt->bindParam(':value1',$firstName);
 		$stmt->bindParam(':value2',$lastName);
 		$stmt->bindParam(':value3',$phone);
 		$stmt->bindParam(':value4',$email);
-		$stmt->bindParam(':value5',$userId);
+		$stmt->bindParam(':value5',$userId);*/
 		$test = $stmt->execute();
-		$err = "Here is the statment status:"+$test;
-		print_r($stmt->errorInfo());
-		
+		//$err = "Here is the statment status:"+$test;
+		//print_r($stmt->test);
+		//echo "Here is the statment status:" . $test;
         if ($test) {
             returnWithSuccess("Contact added successfully.");
         } else {
