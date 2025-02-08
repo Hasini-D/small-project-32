@@ -1,36 +1,32 @@
 <?php
 
-	$inData = getRequestInfo();
+$inData = getRequestInfo();
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
-	if ($conn->connect_error) {
-   	 returnWithError($conn->connect_error);
-	} else {
-    	// Prepare the SQL statement for updating a contact
-    	$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE ID=? AND UserID=?");
-    	$stmt->bind_param(
-        "ssssii", 
-        $inData["FirstName"], 
-        $inData["LastName"], 
-        $inData["Phone"], 
-        $inData["Email"], 
-        $inData["ID"], 
-        $inData["UserID"]
-    );
+$phone = $inData["phone"];
+$email = $inData["email"];
+$newFirst = $inData["firstName"];
+$newLast = $inData["lastName"];
+$id = $inData["id"];
+$userId = (int)$inData["userId"];
 
-    if ($stmt->execute()) {
-        if ($stmt->affected_rows > 0) {
-            returnWithInfo("Contact updated successfully");
-        } else {
-            returnWithError("No matching contact found or no changes made");
-        }
-    } else {
-        returnWithError("Failed to update contact: " . $stmt->error);
-    }
-
-    $stmt->close();
-    $conn->close();
+$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+if ($conn->connect_error) {
+    returnWithError($conn->connect_error);
+    exit();
 }
+
+$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ? AND UserId = ?");
+$stmt->bind_param("ssssii", $newFirst, $newLast, $phone, $email, $id, $userId);
+$stmt->execute();
+
+if ($stmt->affected_rows > 0) {
+    returnWithSuccess("Contact updated successfully.");
+} else {
+    returnWithError("No matching contact found or no changes made.");
+}
+
+$stmt->close();
+$conn->close();
 
 function getRequestInfo()
 {
@@ -45,15 +41,14 @@ function sendResultInfoAsJson($obj)
 
 function returnWithError($err)
 {
-    $retValue = '{"error":"' . $err . '"}';
+    $retValue = json_encode(["error" => $err]);
     sendResultInfoAsJson($retValue);
 }
 
-function returnWithInfo($message)
+function returnWithSuccess($msg)
 {
-    $retValue = '{"message":"' . $message . '","error":""}';
+    $retValue = json_encode(["message" => $msg]);
     sendResultInfoAsJson($retValue);
 }
 
 ?>
-
