@@ -78,7 +78,7 @@ h1, h3, h4{
     margin-top: 10px;
     padding: 10px 20px;
     border-radius: 10px;
-    cursor: pointer; /* Pointer cursor for button */
+    cursor: pointer;
     font-size: 16px;
     display: block;
     margin: 5px auto;
@@ -86,11 +86,11 @@ h1, h3, h4{
 }
 
 .button:hover {
-    background-color: #ffa551bb; /* Change color on hover */
+    background-color: #ffa551bb;
 }
 
 input {
-    width: 90%; /* Full width minus padding */
+    width: 90%; 
     padding: 10px;
     margin: 10px 0;
     border-radius: 30px;
@@ -112,4 +112,25 @@ input {
     font-size: 15px;
     color: black;
     float: left;
+}
+
+.contacts-table {
+    width: 70%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.contacts-table th, .contacts-table td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+}
+
+.contacts-table th {
+    background-color: #FFA451;
+}
+
+.contacts-table tr {
+    background-color: white;
 }

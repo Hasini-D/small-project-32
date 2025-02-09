@@ -66,7 +66,7 @@ function saveCookie() {
 function readCookie() {
     let cookies = document.cookie.split(";");
 
-    let userId = -1, firstName = "", lastName = "";
+    userId = -1, firstName = "", lastName = "";
 
     cookies.forEach(cookie => {
         let [key, value] = cookie.trim().split("=");
@@ -102,89 +102,6 @@ function doLogout() {
 }
 
 
-
-function addColor()
-{
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
-
-	let tmp = {color:newColor,userId,userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/AddContact.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
-	}
-	
-}
-
-function searchColor()
-{
-	const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const loginName = document.getElementById("loginName").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-
-	document.getElementById("colorSearchResult").innerHTML = "";
-	
-	let colorList = "";
-
-	let tmp = {search:srch,userId:userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/SearchColors.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-				let jsonObject = JSON.parse( xhr.responseText );
-				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					colorList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
-	}
-	
-}
-
-
 function signUp() {
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
@@ -212,7 +129,7 @@ function signUp() {
                 if (response.success) {
 					console.log("Data being sent:", data);
 					alert(response.message);
-					window.location.href = "color.html";
+					window.location.href = "index.html";
 				} 
                 
                 else {
@@ -229,4 +146,152 @@ function signUp() {
 	};
 
 	xhr.send(JSON.stringify(data));
+}
+
+function addContact() {
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+
+    document.getElementById("contactAddResult").innerHTML = "";  // Clear any previous messages
+
+    let contactData = {
+        firstName: firstName, 
+        lastName: lastName, 
+        phone: phone,
+        email: email,
+        userId: userId
+    };
+
+    
+    let jsonPayload = JSON.stringify(contactData);
+    let url = urlBase + '/AddContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    // Clear input fields after contact is added
+                    document.getElementById("firstName").value = "";
+                    document.getElementById("lastName").value = "";
+                    document.getElementById("phone").value = "";
+                    document.getElementById("email").value = "";
+
+                    document.getElementById("contactAddResult").innerHTML;
+
+                    // Refresh the contact list automatically
+                    getContacts();
+                } else {
+                    document.getElementById("contactAddResult").innerHTML = "Error: " + xhr.status + " - " + xhr.statusText;
+                }
+            }
+        };
+
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("contactAddResult").innerHTML = "Error: " + err.message;
+    }
+}
+
+
+function getContacts() {
+    const url = urlBase + '/Retrieve.' + extension;
+    
+    const requestData = { userId: userId };
+    const jsonPayload = JSON.stringify(requestData);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true); 
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+
+                    if (response.hasOwnProperty("contacts") && Array.isArray(response.contacts)) {
+                        if (response.contacts.length > 0) {
+                            const formattedContacts = response.contacts.map(contact => ({
+                                firstName: contact.FirstName || "",
+                                lastName: contact.LastName || "",
+                                email: contact.Email || "",
+                                phone: contact.Phone || ""
+                            }));
+                            
+                            displayContacts(formattedContacts);
+                        } else {
+                            document.getElementById("contactAddResult").innerHTML = "No contacts found.";
+                        }
+                    } else {
+                        document.getElementById("contactAddResult").innerHTML = "Error: Invalid data format from server.";
+                    }
+                } catch (error) {
+                    console.error("Error parsing contacts response:", error);
+                    document.getElementById("contactAddResult").innerHTML = "Error loading contacts.";
+                }
+            } else {
+                console.error("Error fetching contacts:", xhr.status, xhr.statusText);
+                document.getElementById("contactAddResult").innerHTML = "Error fetching contacts.";
+            }
+        }
+    };
+
+    xhr.send(jsonPayload);
+}
+
+
+
+function displayContacts(contacts) {
+    const container = document.getElementById("contactAddResult");
+
+    container.innerHTML = "";
+
+    const table = document.createElement("table");
+    table.classList.add("contacts-table");
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+
+    const headers = ["First Name", "Last Name", "Email", "Phone"];
+    headers.forEach(headerText => {
+        let th = document.createElement("th");
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+
+    contacts.forEach(contact => {
+        let row = document.createElement("tr");
+
+        let firstNameCell = document.createElement("td");
+        firstNameCell.textContent = contact.firstName; 
+        row.appendChild(firstNameCell);
+
+        let lastNameCell = document.createElement("td");
+        lastNameCell.textContent = contact.lastName; 
+        row.appendChild(lastNameCell);
+
+        let emailCell = document.createElement("td");
+        emailCell.textContent = contact.email;
+        row.appendChild(emailCell);
+
+        let phoneCell = document.createElement("td");
+        phoneCell.textContent = contact.phone;
+        row.appendChild(phoneCell);
+
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    container.appendChild(table);
 }
