@@ -17,8 +17,18 @@
         <div style="text-align: center; font-size: 20px;" id="userName"></div>
     </div>
 
+
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Search contacts">
+        <button id="searchBtn">Search</button>
+
+    </div>
+    
+    
+
     <div class="container_contact">
         <form id="contactForm">
+            <input type="hidden" id="contactId"> 
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" required>
             <br>
@@ -35,10 +45,22 @@
         </form>
     </div>
 
-    <!-- This is where contacts will be displayed -->
-<div id="contactAddResult">
-
-</div>
+    <!-- Contact Table -->
+    <div id="contactAddResult">
+        <table id="contactsTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Contact rows -->
+            </tbody>
+        </table>        
+    </div>
 
     <div id="loggedInDiv">
         <button type="button" class="button" onclick="doLogout();"> Log Out </button>
@@ -46,15 +68,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-         // Prevent form from submitting and refresh page
-                const form = document.getElementById('contactForm');
-                form.addEventListener('submit', function(event) {
+            const form = document.getElementById('contactForm');
+            form.addEventListener('submit', function(event) {
                 event.preventDefault(); 
                 addContact();        
-                 });
-                readCookie();  //set username display
-                getContacts(); //display contacts automatically when page loads
-            }, false);
+            });
+            readCookie();  // Sets username display
+            getContacts(); // Display contacts when page loads
+        }, false);
+
 
     </script>
 

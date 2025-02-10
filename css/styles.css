@@ -134,3 +134,11 @@ input {
 .contacts-table tr {
     background-color: white;
 }
+
+.search{
+  margin: auto;
+  width: 40%;
+  padding: 5px;
+}
+
+
