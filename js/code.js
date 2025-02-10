@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let contactsArray = [];
 
 function doLogin() {
     let userId = 0;
@@ -184,7 +185,7 @@ function addContact() {
                     document.getElementById("phone").value = "";
                     document.getElementById("email").value = "";
 
-                    // Refresh the contact list automatically
+                    // Refresh the contact list
                     getContacts();  
                 } else {
                     console.error("Error adding contact:", xhr.statusText); // Debugging line
@@ -206,22 +207,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById("searchInput");
     const searchBtn = document.getElementById("searchBtn");
 
-    // Handle search button click
     searchBtn.addEventListener("click", function() {
-        const searchQuery = searchInput.value.toLowerCase();
-        console.log("Search query:", searchQuery);  // Debugging step
+        const searchQuery = searchInput.value.trim();
         if (searchQuery) {
-            searchContacts(searchQuery, userId);
+            searchContacts(searchQuery);
+        } else {
+            getContacts(); // Show all contacts if search is empty
         }
     });
 });
 
 
-
-// Function to search contacts using XMLHttpRequest
-function searchContacts(searchTerm, userId) {
+function searchContacts(searchTerm) {
     const url = urlBase + '/Search.' + extension;
-    
+
     const requestData = {
         search: searchTerm,
         userId: userId
@@ -237,46 +236,62 @@ function searchContacts(searchTerm, userId) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
-    
+
                 if (response.error) {
                     console.error('Error:', response.error);
-                    displayContacts([]);  // Clear results if an error occurs
+                    contactsArray = [];  // Clear the contacts if an error occurs
+                    displayContacts();  
                 } else {
                     console.log('Contacts found:', response.results);
-    
-                    // Fix response to match displayContacts() expectations
-                    const formattedResults = response.results.map(contact => ({
+
+                    // Format response to match displayContacts() expectations
+                    contactsArray = response.results.map(contact => ({
+                        Id: contact.Id,
                         FirstName: contact.firstName,
                         LastName: contact.lastName,
-                        Phone: contact.phone,
-                        Email: contact.email
+                        Email: contact.email,
+                        Phone: contact.phone  // Phone number is not working
                     }));
-    
-                    displayContacts(formattedResults);
+
+                    displayContacts(); // refresh contacts
                 }
             } else {
                 console.error('Request failed with status:', xhr.status);
             }
         }
-    };    
+    };
+
     xhr.send(jsonPayload);
 }
 
 function getContacts() {
-    console.log("Fetching contacts... User ID:", userId);  // Debugging line
+    console.log("Fetching contacts... User ID:", userId);
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", urlBase + "/Retrieve." + extension, true);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
 
-            if (response.success) {
-                displayContacts(response.contacts);
+                if (response.error) {
+                    console.error("Error loading contacts:", response.error);
+                    contactsArray = [];  
+                } else {
+                    contactsArray = response.contacts.map(contact => ({
+                        Id: contact.ID || contact.Id,
+                        FirstName: contact.FirstName || contact.firstName,
+                        LastName: contact.LastName || contact.lastName,
+                        Phone: contact.Phone || contact.phone,
+                        Email: contact.Email || contact.email
+                    }));
+                }
+
+                displayContacts(); // Refresh contacts
             } else {
-                console.error("Error loading contacts");
-                displayContacts([]); // Show empty table if an error occurs
+                console.error("Failed to fetch contacts:", xhr.status);
             }
         }
     };
@@ -285,38 +300,37 @@ function getContacts() {
     xhr.send(JSON.stringify(requestData));
 }
 
-
-function displayContacts(contacts) {
-    
+function displayContacts() {
     const tbody = document.querySelector('#contactsTable tbody');
     
-    if (tbody) {
-        tbody.innerHTML = '';  // Clear previous contacts
-
-        if (contacts.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4">No contacts found.</td></tr>';
-            return;
-        }
-
-        contacts.forEach(contact => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${contact.FirstName}</td>
-                <td>${contact.LastName}</td>
-                <td>${contact.Phone}</td>
-                <td>${contact.Email}</td>
-                <td>
-                    <button onclick="editContact(${contact.Id})">Edit</button>
-                    <button onclick="deleteContact(${contact.Id})">Delete</button>
-                </td>
-            `;
-            tbody.appendChild(row);
-        });
-        
-    } else {
-        console.error('Error: Contacts table tbody not found.');
+    if (!tbody) {
+        console.error("Error: Contacts table tbody not found.");
+        return;
     }
+
+    tbody.innerHTML = ''; // Clear previous contacts
+
+    if (contactsArray.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5">No contacts found.</td></tr>';
+        return;
+    }
+
+    contactsArray.forEach(contact => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${contact.FirstName}</td>
+            <td>${contact.LastName}</td>
+            <td>${contact.Email}</td>
+            <td>${contact.Phone}</td>
+            <td>
+                <button onclick="editContact(${contact.Id})">Edit</button>
+                <button onclick="deleteContact(${contact.Id})">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
 }
+
 
 //Not working
 // NOTE: EVERYTHING EXCEPT FOR SEARCH YOU NEED TO CALL RETRIEVE.PHP AGAIN
@@ -376,6 +390,7 @@ function deleteContact(contactId) {
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
+                    contactsArray = contactsArray.filter(contact => contact.Id !== contactId); //deletes from array
                     getContacts(); //Refresh contacts
                 } else {
                     console.error("Failed to delete contact");
