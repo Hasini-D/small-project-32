@@ -202,8 +202,6 @@ function addContact() {
 
 
 
-
-/*
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById("searchInput");
     const searchBtn = document.getElementById("searchBtn");
@@ -218,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-*/
+
 
 // Function to search contacts using XMLHttpRequest
 function searchContacts(searchTerm, userId) {
@@ -239,20 +237,28 @@ function searchContacts(searchTerm, userId) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
-
+    
                 if (response.error) {
                     console.error('Error:', response.error);
-                    displayContacts([]);  // Clear results if error occurs
+                    displayContacts([]);  // Clear results if an error occurs
                 } else {
                     console.log('Contacts found:', response.results);
-                    displayContacts(response.results); 
+    
+                    // Fix response to match displayContacts() expectations
+                    const formattedResults = response.results.map(contact => ({
+                        FirstName: contact.firstName,
+                        LastName: contact.lastName,
+                        Phone: contact.phone,
+                        Email: contact.email
+                    }));
+    
+                    displayContacts(formattedResults);
                 }
             } else {
                 console.error('Request failed with status:', xhr.status);
             }
         }
-    };
-
+    };    
     xhr.send(jsonPayload);
 }
 
@@ -295,10 +301,10 @@ function displayContacts(contacts) {
         contacts.forEach(contact => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${contact.firstName}</td>
-                <td>${contact.lastName}</td>
-                <td>${contact.phone}</td>
-                <td>${contact.email}</td>
+                <td>${contact.FirstName}</td>
+                <td>${contact.LastName}</td>
+                <td>${contact.Phone}</td>
+                <td>${contact.Email}</td>
                 <td>
                     <button onclick="editContact(${contact.Id})">Edit</button>
                     <button onclick="deleteContact(${contact.Id})">Delete</button>
@@ -314,6 +320,7 @@ function displayContacts(contacts) {
 
 //Not working
 // NOTE: EVERYTHING EXCEPT FOR SEARCH YOU NEED TO CALL RETRIEVE.PHP AGAIN
+/*
 function editContact(contactId) {
     const url = urlBase + '/Update.' + extension; 
 
@@ -348,7 +355,7 @@ function editContact(contactId) {
 
     xhr.send(jsonPayload);
 }
-
+*/
 
 function deleteContact(contactId) {
     if (confirm("Are you sure you want to delete this contact?")) {

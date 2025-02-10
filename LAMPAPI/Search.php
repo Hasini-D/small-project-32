@@ -14,7 +14,6 @@ if ($conn->connect_error) {
     exit();
 }
 
-//changed line
 $stmt = $conn->prepare("SELECT Id, firstName, lastName, email FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ? OR email LIKE ?) AND userId = ?");
 $stmt->bind_param("sssi", $search, $search, $search, $userId);
 $stmt->execute();
