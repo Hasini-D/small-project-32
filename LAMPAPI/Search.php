@@ -14,7 +14,8 @@ if ($conn->connect_error) {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT Id, firstName, lastName, email FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ? OR email LIKE ?) AND userId = ?");
+// Add phone to select to return the phone numbers in the search
+error_log("Executing query: SELECT Id, firstName, lastName, email, phone FROM Contacts WHERE (firstName LIKE '$search' OR lastName LIKE '$search' OR email LIKE '$search') AND userId = '$userId'");
 $stmt->bind_param("sssi", $search, $search, $search, $userId);
 $stmt->execute();
 $result = $stmt->get_result();
