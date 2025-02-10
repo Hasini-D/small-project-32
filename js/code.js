@@ -203,7 +203,7 @@ function addContact() {
 
 
 
-
+/*
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById("searchInput");
     const searchBtn = document.getElementById("searchBtn");
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
+*/
 
 // Function to search contacts using XMLHttpRequest
 function searchContacts(searchTerm, userId) {
@@ -293,7 +293,6 @@ function displayContacts(contacts) {
         }
 
         contacts.forEach(contact => {
-            console.log("Contact ID:", contact.Id); 
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${contact.firstName}</td>
@@ -314,11 +313,12 @@ function displayContacts(contacts) {
 }
 
 //Not working
+// NOTE: EVERYTHING EXCEPT FOR SEARCH YOU NEED TO CALL RETRIEVE.PHP AGAIN
 function editContact(contactId) {
-    const url = urlBase + '/Retrieve.' + extension;
+    const url = urlBase + '/Update.' + extension; 
 
-    const requestData = { contactId: contactId, userId: userId };
-    const jsonPayload = JSON.stringify(requestData);
+    const contactData = { Id: contactId, userId: userId };
+    const jsonPayload = JSON.stringify(contactData);
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -329,14 +329,14 @@ function editContact(contactId) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
                 if (response.contact) {
-                    // Populate the "Add Contact" form with the contact details for editing
                     document.getElementById("firstName").value = response.contact.firstName;
                     document.getElementById("lastName").value = response.contact.lastName;
                     document.getElementById("phone").value = response.contact.phone;
                     document.getElementById("email").value = response.contact.email;
 
                     // Set a flag to indicate that we are editing an existing contact
-                    document.getElementById("contactId").value = response.contact.id;
+                    console.log("User data: ", firstName, lastName, phone, email, contactId);
+                    
                 } else {
                     alert("Contact not found.");
                 }

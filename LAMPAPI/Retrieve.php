@@ -16,7 +16,7 @@ if ($conn->connect_error)
 else 
 {
     // Retrieve all contacts for the given user
-    $stmt = $conn->prepare("SELECT Id, firstName, lastName, phone, email FROM Contacts WHERE UserId=?");
+    $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email FROM Contacts WHERE UserId=?");
     $stmt->bind_param("i", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
