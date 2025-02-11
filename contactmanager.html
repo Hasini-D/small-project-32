@@ -17,10 +17,19 @@
         <img id="image" src="images/snoopy hammock.png" alt="Click to animate" style="width: 270px; height: 280px; cursor: pointer; position: absolute; top: -50px; left: 20px;">
 
        <script>
+        let isGif = false; // Track the state of the image
+
         document.getElementById("image").addEventListener("click", function () {
             let staticSrc = "images/snoopy_hammock.png";
             let gifSrc = "images/snoopy.GIF";
-            this.src = (this.src.includes(staticSrc)) ? gifSrc : staticSrc;
+
+            if (isGif) {
+                this.src = staticSrc; // Switch back to the static image
+            } else {
+                this.src = gifSrc + "?t=" + new Date().getTime(); // Ensure GIF restarts when clicked
+            }
+
+            isGif = !isGif; // Toggle the state
         });
         </script>
 
