@@ -47,35 +47,32 @@
     top: 10px;
     left: 70px;
     width: 200px;
-    height: auto;
+    height: 200px;
     margin: 20px;
 }
-
 .login-filler4{
     position: absolute;
     top: 15px;
     right: 10px;
     width: 250px;
-    height: auto;
+    height: 200px;
     margin: 20px;
 }
-
 .login-filler5{
     position: absolute;
-    top: 2px;
-    right: 150px;
-    width: auto;
+    top: 5px;
+    right: 350px;
+    width: 160px;
     height: 170px;
-    margin-top: -15px;
+    margin: 20px;
 }
-
 .login-filler6{
     position: absolute;
-    top: 1px;
-    margin: -20px;
-    left: 200px;
-    width: auto;
+    top: 5px;
+    left: 350px;
+    width: 160px;
     height: 170px;
+    margin: 20px;
 }
 
 .signup-filler{
@@ -129,9 +126,9 @@
     background-color: white;
     width: 50%; 
     max-width: 600px; 
-    padding: 20px; 
+    padding: 20px;
     border-radius: 40px;
-    align-items: center; 
+    align-items: center;;
 }
 
 .container_signup {
@@ -144,7 +141,7 @@
 
 .container_contact {
     background-color: white;
-    width: 300px;
+    width: 350px;
     height: 450px;
     border: 3px solid rgba(135, 191, 255, 0.14);
     padding: 20px;
@@ -157,13 +154,17 @@
     float: left;
 }
 
+/* Moved title and login container to the center of the page */
+.title {
+    margin-top: 5%;
+}
+
 h1, h2, h3{
     text-align: center;
 }
 
 h1{
     font-size: 40px;
-    margin: 10px;
 }
 
 h2{
@@ -198,6 +199,9 @@ a:hover{
     font-size: 16px;
 }
 
+.label {
+    font-family: "Coming Soon", serif;
+}
 
 .coming-soon-regular {
     font-family: "Coming Soon", serif;
@@ -326,6 +330,14 @@ input  {
     top: 20px;         
 }
 
+#loggedInDiv, .button {
+    font-size: 22px;        
+}
+
+.header-container, h1 {
+    font-size: 60px;
+}
+
 #contactAddResult {
     margin-top: 25px;          
     padding: 20px;
@@ -368,16 +380,6 @@ input  {
     font-size: 14px;            
 }
 
-
-/*#snoopy {
-    width: 300px; 
-    height: 260px;
-    object-fit: cover; 
-    cursor: pointer; 
-    position: absolute; 
-    top: 0; 
-    left: 0;
-}*/
  /* Bottom-right image */
  #woodstock {
     position: absolute;
@@ -386,4 +388,8 @@ input  {
     width: 15vw;
     height: 25vh;
     cursor: pointer;
+}
+
+input, textarea {
+    font-family: "Coming Soon", serif;
 }
