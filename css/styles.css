@@ -1,10 +1,105 @@
 .login{
     font-family: "Coming Soon", serif;
-    padding: 5px;
+    padding: 20px;
     background-color: #FFEEAD;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+    top: 10%; 
+    left:10%; 
+    margin:60px;
+    zoom:100%;
+}
+
+.bottom-right-login{
+    position: absolute;
+    bottom: 200px;
+    left: 80px;
+    width:80px;
+    height:80px;
+    margin: 20px;
+}
+
+.bottom-left-login{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width:170px;
+    height:200px;
+    margin: 20px;
+}
+
+.login-filler{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    width: 180px;
+    height: 180px;
+    margin: 20px;
+}
+
+.login-filler2{
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 120px;
+    height: 120px;
+    margin: 20px;
+}
+
+.login-filler3{
+    position: absolute;
+    top: 10px;
+    left: 70px;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.login-filler4{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 250px;
+    height: 200px;
+    margin: 20px;
+}
+
+.login-filler5{
+    position: absolute;
+    top: 5px;
+    right: 350px;
+    width: 160px;
+    height: 170px;
+    margin: 20px;
+}
+
+.login-filler6{
+    position: absolute;
+    top: 5px;
+    left: 350px;
+    width: 160px;
+    height: 170px;
+    margin: 20px;
+}
+
+.signup-filler{
+    position: absolute;
+    bottom: 20px;
+    right: 140px;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.signup-filler2{
+    position: absolute;
+    bottom: 20px;
+    right: 60px;
+    width: 80px;
+    height: 80px;
+    margin: 20px;
 }
 
 .signup{
@@ -14,7 +109,7 @@
     align-items: center;
     flex-direction: column;
     width: device-width;
-    zoom: 60%;
+    zoom: 100%;
 }
 
 .contact{
