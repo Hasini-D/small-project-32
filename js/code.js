@@ -302,12 +302,6 @@ function getContacts() {
 
 function displayContacts() {
     const tbody = document.querySelector('#contactsTable tbody');
-    
-    if (!tbody) {
-        console.error("Error: Contacts table tbody not found.");
-        return;
-    }
-
     tbody.innerHTML = ''; // Clear previous contacts
 
     if (contactsArray.length === 0) {
@@ -332,44 +326,76 @@ function displayContacts() {
 }
 
 
-//Not working
-// NOTE: EVERYTHING EXCEPT FOR SEARCH YOU NEED TO CALL RETRIEVE.PHP AGAIN
-/*
 function editContact(contactId) {
-    const url = urlBase + '/Update.' + extension; 
+    console.log("editContact called with contactId:", contactId);
 
-    const contactData = { Id: contactId, userId: userId };
-    const jsonPayload = JSON.stringify(contactData);
+    let contact = contactsArray.find(c => c.Id === contactId);
 
-    const xhr = new XMLHttpRequest();
+    if (!contact) {
+        console.error("Contact not found for ID:", contactId);
+        return;
+    }
+
+    console.log("Contact found:", contact);
+
+    // Populate form fields with existing data
+    document.getElementById("editContactId").value = contact.Id;
+    document.getElementById("editFirstName").value = contact.FirstName;
+    document.getElementById("editLastName").value = contact.LastName;
+    document.getElementById("editEmail").value = contact.Email;
+    document.getElementById("editPhone").value = contact.Phone;
+
+    // Show the pop up editor
+    document.getElementById("editContactModal").style.display = "block";
+    console.log("Edit modal displayed.");
+}
+
+function closeEditModal() {
+    console.log("Closing edit modal.");
+    document.getElementById("editContactModal").style.display = "none";
+}
+
+// Handle the form submission for updating contact
+document.getElementById("editContactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    console.log("Edit form submitted.");
+
+    let updatedContact = {
+        id: document.getElementById("editContactId").value,
+        firstName: document.getElementById("editFirstName").value,
+        lastName: document.getElementById("editLastName").value,
+        email: document.getElementById("editEmail").value,
+        phone: document.getElementById("editPhone").value,
+        userId: userId  // Assuming userId is stored globally
+    };
+
+    console.log("Updated contact data:", updatedContact);
+
+    let jsonPayload = JSON.stringify(updatedContact);
+    let url = urlBase + "/Update." + extension; 
+
+    let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.contact) {
-                    document.getElementById("firstName").value = response.contact.firstName;
-                    document.getElementById("lastName").value = response.contact.lastName;
-                    document.getElementById("phone").value = response.contact.phone;
-                    document.getElementById("email").value = response.contact.email;
-
-                    // Set a flag to indicate that we are editing an existing contact
-                    console.log("User data: ", firstName, lastName, phone, email, contactId);
-                    
-                } else {
-                    alert("Contact not found.");
-                }
-            } else {
-                console.error("Failed to fetch contact:", xhr.status);
-            }
+    xhr.onreadystatechange = function() {
+        console.log("XHR readyState:", xhr.readyState, "status:", xhr.status);
+        
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Contact updated successfully!", xhr.responseText);
+            closeEditModal(); // Close modal
+            getContacts(); // Refresh contacts list
+        } else if (xhr.readyState === 4) {
+            console.error("Error updating contact:", xhr.statusText, "Response:", xhr.responseText);
         }
     };
 
+    console.log("Sending update request to:", url);
     xhr.send(jsonPayload);
-}
-*/
+});
+
+
+
 
 function deleteContact(contactId) {
     if (confirm("Are you sure you want to delete this contact?")) {
