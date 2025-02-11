@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name=description content="Sign in page">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <script type="text/javascript" src="js/md5.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
@@ -26,7 +28,7 @@
     <div class="container">
 		<!--return false is used so The page does not reload or redirect upon form submission.-->
         <form onsubmit="return false;">
-            <h3>Enter your username and password</h3>
+            <h2>Enter your username and password</h2>
             <label for="loginName">Username</label>
             <input type="text" id="loginName" name="username" placeholder="Username" required>
             <br>
@@ -39,7 +41,7 @@
         <!----Add the login result-->
         <div id="loginResult" style="color: red; font-weight: bold; margin-top: 10px;"></div>
 
-        <h4>Don't have an account? <a href="signup.html">Sign up</a></h4>
+        <h3>Don't have an account? <a href="signup.html">Sign up</a></h3>
     </div>
 </body>
 </html>

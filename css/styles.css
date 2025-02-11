@@ -163,7 +163,7 @@
     float: left;
 }
 
-h1, h3, h4{
+h1, h2, h3{
     text-align: center;
 }
 
@@ -172,14 +172,22 @@ h1{
     margin: 20px;
 }
 
-h3{
+h2{
     font-size: 22px;
     margin: 20px;
 }
 
-h4{
+h3{
     font-size: 17px;
     margin: 20px;
+}
+
+a{
+    color:#000000;
+    text-decoration:underline;
+}
+a:hover{
+    color: #FFA451;
 }
 
 label{
