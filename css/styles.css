@@ -102,6 +102,16 @@
     margin: 3px;
 }
 
+.dash-filler{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 850px;
+    height: auto;
+    margin: 10px;
+    transform: scale(1.5); /* Adjust the scale value as needed */
+}
+
 .signup{
     font-family: "Coming Soon", serif;
     display: flex;
