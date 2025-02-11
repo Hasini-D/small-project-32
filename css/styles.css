@@ -47,35 +47,32 @@
     top: 10px;
     left: 70px;
     width: 200px;
-    height: auto;
+    height: 200px;
     margin: 20px;
 }
-
 .login-filler4{
     position: absolute;
     top: 15px;
     right: 10px;
     width: 250px;
-    height: auto;
+    height: 200px;
     margin: 20px;
 }
-
 .login-filler5{
     position: absolute;
-    top: 2px;
-    right: 150px;
-    width: auto;
+    top: 5px;
+    right: 350px;
+    width: 160px;
     height: 170px;
-    margin-top: -15px;
+    margin: 20px;
 }
-
 .login-filler6{
     position: absolute;
-    top: 1px;
-    margin: -20px;
-    left: 200px;
-    width: auto;
+    top: 5px;
+    left: 350px;
+    width: 160px;
     height: 170px;
+    margin: 20px;
 }
 
 .signup-filler{
@@ -129,9 +126,10 @@
     background-color: white;
     width: 50%; 
     max-width: 600px; 
-    padding: 20px; 
+    padding: 20px;
     border-radius: 40px;
-    align-items: center; 
+    align-items: center;
+    /*margin-top: 5%;*/
 }
 
 .container_signup {
@@ -140,6 +138,7 @@
     border-radius: 40px;
     align-items: center; 
     padding-left: 30px;
+    /*margin-top: 5%;*/
 }
 
 .container_contact {
@@ -157,13 +156,17 @@
     float: left;
 }
 
+/* Moved title and login container to the center of the page */
+.title {
+    margin-top: 5%;
+}
+
 h1, h2, h3{
     text-align: center;
 }
 
 h1{
     font-size: 40px;
-    margin: 10px;
 }
 
 h2{
