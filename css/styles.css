@@ -1,51 +1,45 @@
 .login{
     font-family: "Coming Soon", serif;
-    padding: 20px;
     background-color: #FFEEAD;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    top: 10%; 
-    left:10%; 
-    margin:60px;
-    zoom:100%;
+    margin:10px;
 }
 
 .bottom-right-login{
     position: absolute;
-    bottom: 200px;
-    left: 80px;
+    bottom: 160px;
+    left: 70px;
     width:80px;
-    height:80px;
+    height:auto;
     margin: 20px;
 }
 
 .bottom-left-login{
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width:170px;
+    bottom: 0px;
+    left: 5px;
+    width:auto;
     height:200px;
-    margin: 20px;
 }
 
 .login-filler{
     position: absolute;
-    bottom: 20px;
-    right: 10px;
+    bottom: 0px;
+    right: 5px;
     width: 180px;
-    height: 180px;
-    margin: 20px;
+    height: auto;
 }
 
 .login-filler2{
     position: absolute;
     top: 20px;
-    left: 10px;
-    width: 120px;
+    left: 1px;
+    width: auto;
     height: 120px;
-    margin: 20px;
+    margin: 0px;
 }
 
 .login-filler3{
@@ -53,7 +47,7 @@
     top: 10px;
     left: 70px;
     width: 200px;
-    height: 200px;
+    height: auto;
     margin: 20px;
 }
 
@@ -62,26 +56,26 @@
     top: 15px;
     right: 10px;
     width: 250px;
-    height: 200px;
+    height: auto;
     margin: 20px;
 }
 
 .login-filler5{
     position: absolute;
-    top: 5px;
-    right: 350px;
-    width: 160px;
+    top: 2px;
+    right: 150px;
+    width: auto;
     height: 170px;
-    margin: 20px;
+    margin-top: -15px;
 }
 
 .login-filler6{
     position: absolute;
-    top: 5px;
-    left: 350px;
-    width: 160px;
+    top: 1px;
+    margin: -20px;
+    left: 200px;
+    width: auto;
     height: 170px;
-    margin: 20px;
 }
 
 .signup-filler{
