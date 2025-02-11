@@ -80,29 +80,29 @@
 
 .signup-filler{
     position: absolute;
-    bottom: 20px;
-    right: 140px;
+    bottom: 0px;
+    right: 40px;
     width: 200px;
-    height: 200px;
-    margin: 20px;
+    height: auto;
+    margin: 5px;
 }
 
 .signup-filler2{
     position: absolute;
-    bottom: 20px;
-    right: 60px;
+    bottom: 0px;
+    right: 0px;
     width: 80px;
-    height: 80px;
-    margin: 20px;
+    height: auto;
+    margin: 5px;
 }
 
 .bottom-left-signup{
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width:170px;
+    bottom: 0px;
+    left: 0px;
+    width:auto;
     height:200px;
-    margin: 20px;
+    margin: 3px;
 }
 
 .signup{
@@ -137,9 +137,9 @@
 .container_signup {
     background-color: white;
     width: 700px; 
-    padding: 20px; 
     border-radius: 40px;
     align-items: center; 
+    padding-left: 30px;
 }
 
 .container_contact {
@@ -162,18 +162,16 @@ h1, h2, h3{
 }
 
 h1{
-    font-size: 50px;
-    margin: 20px;
+    font-size: 40px;
+    margin: 10px;
 }
 
 h2{
-    font-size: 22px;
-    margin: 20px;
+    font-size: 20px;
 }
 
 h3{
-    font-size: 17px;
-    margin: 20px;
+    font-size: 15px;
 }
 
 a{
@@ -184,9 +182,22 @@ a:hover{
     color: #FFA451;
 }
 
-label{
-    font-size: 18px;
+
+.input-signup{
+    width: 90%; 
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 30px;
+    border: 2px solid #000000;
+    font-size: 15px;
+    background-color: #D9D9D9;
 }
+
+ .signup-label{
+    font-size: 16px;
+}
+
 
 .coming-soon-regular {
     font-family: "Coming Soon", serif;
@@ -214,7 +225,8 @@ label{
     background-color: #ffa551bb;
 }
 
-input {
+
+input  {
     width: 90%; 
     padding: 10px;
     margin: 10px 0;

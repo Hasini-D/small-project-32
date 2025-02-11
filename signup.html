@@ -30,17 +30,17 @@
 		<!--return false is used so The page does not reload or redirect upon form submission.-->
         <form onsubmit="return false;">
             <h2>Create an account</h2>
-            <label for="firstName">First Name</label>
-            <input type="text"  id="firstName" placeholder="First Name" required>
+            <label class="signup-label"for="firstName">First Name</label>
+            <input class="input-signup" type="text"  id="firstName" placeholder="First Name" required>
             <br>
-            <label for="lastName">Last Name</label>
-            <input type="text"  id="lastName" placeholder="Last Name" required>
+            <label class="signup-label" for="lastName">Last Name</label>
+            <input class="input-signup" type="text"  id="lastName" placeholder="Last Name" required>
             <br>
-            <label for="loginName">Username</label>
-            <input type="text"  id="loginName" placeholder="Username" required>
+            <label class="signup-label"for="loginName">Username</label>
+            <input class="input-signup" type="text"  id="loginName" placeholder="Username" required>
             <br>
-            <label for="loginPassword">Password</label>
-            <input type="password" id="loginPassword" placeholder="Password" required>
+            <label class="signup-label" for="loginPassword">Password</label>
+            <input class="input-signup" type="password" id="loginPassword" placeholder="Password" required>
             <br>
             <button class="button" type="button" onclick="signUp();">Sign up</button>
         </form>
