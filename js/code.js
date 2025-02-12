@@ -155,7 +155,6 @@ function addContact() {
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
 
-    // Clear any previous messages
     document.getElementById("contactAddResult").innerHTML = "";
 
     let contactData = {
@@ -173,34 +172,25 @@ function addContact() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    try {
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                console.log("XHR Status:", xhr.status); // Debugging line
-                if (xhr.status == 200) {
-                    console.log("Contact added successfully!"); // Debugging line
-                    // Clear input fields after contact is added
-                    document.getElementById("firstName").value = "";
-                    document.getElementById("lastName").value = "";
-                    document.getElementById("phone").value = "";
-                    document.getElementById("email").value = "";
-
-                    // Refresh the contact list
-                    getContacts();  
-                } else {
-                    console.error("Error adding contact:", xhr.statusText); // Debugging line
-                    document.getElementById("contactAddResult").innerHTML = "Error: " + xhr.status + " - " + xhr.statusText;
-                }
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                document.getElementById("firstName").value = "";
+                document.getElementById("lastName").value = "";
+                document.getElementById("phone").value = "";
+                document.getElementById("email").value = "";
+                getContacts();
+                location.reload(); // Refreshes the page from the server
+            } 
+            else {
+                console.error("Error adding contact:", xhr.statusText);
+                document.getElementById("contactAddResult").innerHTML = "Error: " + xhr.status + " - " + xhr.statusText;
             }
-        };
+        }
+    };
 
-        xhr.send(jsonPayload);
-    } catch (err) {
-        console.error("Request error:", err); // Debugging line
-        document.getElementById("contactAddResult").innerHTML = "Error: " + err.message;
-    }
+    xhr.send(jsonPayload);
 }
-
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -302,7 +292,7 @@ function getContacts() {
 
 function displayContacts() {
     const tbody = document.querySelector('#contactsTable tbody');
-    tbody.innerHTML = ''; // Clear previous contacts
+    tbody.innerHTML = ''; // Clear the table before populating it
 
     if (contactsArray.length === 0) {
         tbody.innerHTML = '<tr><td colspan="5">No contacts found.</td></tr>';
@@ -317,8 +307,12 @@ function displayContacts() {
             <td>${contact.Email}</td>
             <td>${contact.Phone}</td>
             <td>
-                <button onclick="editContact(${contact.Id})">Edit</button>
-                <button onclick="deleteContact(${contact.Id})">Delete</button>
+                <button onclick="editContact(${contact.Id})">
+                    <img style="height:20px;" src="images/edit.png" alt="edit">
+                </button>
+                <button onclick="deleteContact(${contact.Id})">
+                    <img style="height:20px;" src="images/trash.png" alt="delete">
+                </button>
             </td>
         `;
         tbody.appendChild(row);
