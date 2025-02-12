@@ -308,10 +308,10 @@ function displayContacts() {
             <td>${contact.Phone}</td>
             <td>
                 <button onclick="editContact(${contact.Id})">
-                    <img style="height:20px;" src="images/edit.png" alt="edit">
+                    <img style="height:40px;" src="images/edit.png" alt="edit">
                 </button>
                 <button onclick="deleteContact(${contact.Id})">
-                    <img style="height:20px;" src="images/trash.png" alt="delete">
+                    <img style="height:40px;" src="images/trash.png" alt="delete">
                 </button>
             </td>
         `;

@@ -149,20 +149,6 @@
     padding-left: 30px;
 }
 
-.container_contact {
-    background-color: white;
-    width: 350px;
-    height: 450px;
-    border: 3px solid rgba(135, 191, 255, 0.14);
-    padding: 20px;
-    text-align: center; 
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    align-items: center; /* Center content vertically */
-    font-size: 20px;
-    margin: 20px;
-    float: left;
-}
 
 /* Moved title and login container to the center of the page */
 .title {
@@ -211,6 +197,11 @@ a:hover{
 
 .label {
     font-family: "Coming Soon", serif;
+}
+
+.labelContact {
+    font-family: "Coming Soon", serif;
+    font-size: 24px;
 }
 
 .coming-soon-regular {
@@ -269,8 +260,8 @@ input  {
 /*CSS for Contact Manager page*/
 .container_contact {
     background-color: white;
-    width: 300px;
-    height: 450px;
+    width: 15%;
+    height: auto;
     border: 3px solid rgba(135, 191, 255, 0.14);
     padding: 20px;
     text-align: center; 
@@ -331,7 +322,8 @@ input  {
 .header-container {
     display: flex;
     justify-content: space-around; 
-    align-items: center;            
+    align-items: center;   
+    margin: 0px;        
 }
 
 #loggedInDiv {
@@ -349,12 +341,12 @@ input  {
 }
 
 #contactAddResult {
-    margin-top: 25px;          
+    margin-top: 20px;          
     padding: 20px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 900px;    
+    width: 60%;    
     margin-left: auto;           
     margin-right: auto;
 }
@@ -374,7 +366,8 @@ input  {
 
 #contactsTable th {
     background-color: #FFA451;   
-    color: black;               
+    color: black;   
+    font-size: 35px;                
 }
 
 #contactsTable tr:nth-child(even) {
@@ -387,7 +380,7 @@ input  {
 }
 
 #contactsTable td {
-    font-size: 14px;            
+    font-size: 30px;            
 }
 
  /* Bottom-right image */
@@ -402,4 +395,9 @@ input  {
 
 input, textarea {
     font-family: "Coming Soon", serif;
+}
+
+.tableAndForm{
+    width: auto;
+    padding: 10px;
 }
