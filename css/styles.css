@@ -385,12 +385,11 @@ input  {
 
  /* Bottom-right image */
  #woodstock {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    width: 200px;
     width: 15vw;
     height: 25vh;
-    cursor: pointer;
+    margin: 5px;
+    position: fixed;
 }
 
 input, textarea {
